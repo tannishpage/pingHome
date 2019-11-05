@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">pingHomeApp</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="ipBox">IP Address</string>
+    <string name="interval">Sync Interval</string>
+
 </resources>

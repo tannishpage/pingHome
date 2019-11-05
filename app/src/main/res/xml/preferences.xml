@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:defaultValue="127.0.0.1"
+        android:key="IpBox"
+        android:title="@string/ipBox"
+        android:summary="The IP address to send the information to"/>
+    <SeekBarPreference
+        android:key="Intervel"
+        android:defaultValue="10"
+        android:max="180"
+        android:title="@string/interval"
+        android:summary="The wait time between sending data"/>
+</PreferenceScreen>
