@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class GPSStatus implements LocationListener{
+public class GNSSStatus implements LocationListener{
 
     private LocationManager locationManager;
     private Location gps_loc;
@@ -25,12 +25,12 @@ public class GPSStatus implements LocationListener{
     private double latitude, longitude;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
-    public GPSStatus(LocationManager locationManager, Context context, Activity activity) {
+    public GNSSStatus(LocationManager locationManager, Context context, Activity activity) {
         this.locationManager = locationManager;
         this.context = context;
         this.activity = activity;
         try{
-            this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1, this);
+            this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
         } catch (SecurityException e){
             e.printStackTrace();
         }
@@ -85,9 +85,10 @@ public class GPSStatus implements LocationListener{
     }
 
     public ArrayList<Double> getCurrentCoordinates(){
-        if (checkPerm()){
+        this.updateLocation();
+        if (this.checkPerm()){
             Toast.makeText(this.context, "You need to allow location services for this app",
-                    Toast.LENGTH_SHORT);
+                    Toast.LENGTH_SHORT).show();
         }
         return new ArrayList<Double>(Arrays.asList(latitude,longitude));
     }
@@ -104,11 +105,13 @@ public class GPSStatus implements LocationListener{
 
     @Override
     public void onProviderEnabled(String provider) {
-
+        Toast.makeText(this.context, "Location Provider enabled",
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-
+        Toast.makeText(this.context, "Location Provider disabled",
+                Toast.LENGTH_SHORT).show();
     }
 }
