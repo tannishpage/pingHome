@@ -13,6 +13,7 @@ public class BatteryStatus {
     private double batteryLevel = 0;
     private boolean charging;
     private String chargeMethod;
+    private boolean send = true;
     public BatteryStatus(Context context){
         BroadcastReceiver mBatteryLevelReceiver = new BroadcastReceiver() {
             @Override
@@ -56,5 +57,13 @@ public class BatteryStatus {
             default:
                 return "UNKNOWN";
         }
+    }
+
+    public boolean isSend() {
+        return send;
+    }
+
+    public void setSend(boolean send) {
+        this.send = send;
     }
 }

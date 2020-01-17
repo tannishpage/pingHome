@@ -16,6 +16,7 @@ public class NetworkHandler {
     Socket s;
     DataOutputStream out;
     BufferedReader input;
+    private int sendInterval = 60;
 
     private static NetworkHandler instance;
 
@@ -26,5 +27,25 @@ public class NetworkHandler {
             instance = new NetworkHandler();
         }
         return instance;
+    }
+
+    public int getSendInterval() {
+        return sendInterval;
+    }
+
+    public void setSendInterval(int sendInterval) {
+        this.sendInterval = sendInterval;
+    }
+
+    public void connect(String ipaddress, int port){
+
+    }
+
+    public void disconnect(){
+
+    }
+
+    public void send(StringBuffer data){
+
     }
 }

@@ -23,6 +23,7 @@ public class GNSSStatus implements LocationListener{
     private Context context;
     private Activity activity;
     private double latitude, longitude;
+    private boolean send = true;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public GNSSStatus(LocationManager locationManager, Context context, Activity activity) {
@@ -30,7 +31,7 @@ public class GNSSStatus implements LocationListener{
         this.context = context;
         this.activity = activity;
         try{
-            this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
+            this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
         } catch (SecurityException e){
             e.printStackTrace();
         }
@@ -92,6 +93,16 @@ public class GNSSStatus implements LocationListener{
         }
         return new ArrayList<Double>(Arrays.asList(latitude,longitude));
     }
+
+
+    public boolean isSend() {
+        return send;
+    }
+
+    public void setSend(boolean send) {
+        this.send = send;
+    }
+
 
     @Override
     public void onLocationChanged(Location location) {
